@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Next.js Chrome Extension",
+  "version": "1.0",
+  "description": "A simple Chrome extension built with Next.js",
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "Next.js Extension"
+  },
+  "permissions": ["storage"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
+  "icons": {}
+}
