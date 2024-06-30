@@ -1,5 +1,5 @@
 {
-  "name": "next-app",
+  "name": "docroadmap-extension",
   "private": true,
   "scripts": {
     "dev": "next dev",
