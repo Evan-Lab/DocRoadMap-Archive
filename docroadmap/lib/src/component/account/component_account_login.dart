@@ -30,7 +30,7 @@ class _LoginFormState extends State<LoginForm> {
       key: _formKey,
       child: Column(
         children: [
-          ((userInfo != null) ? Text(userInfo.firstName) : Text("Login")),
+          ((userInfo != null) ? Text(userInfo.firstName) : const Text("Login")),
           Container(
             margin: const EdgeInsets.only(bottom: 30, top: 30),
             child: TextFormField(
@@ -74,15 +74,15 @@ class _LoginFormState extends State<LoginForm> {
               ),
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
+                  // ignore: unused_local_variable
                   var emailVal = emailController.text;
+                  // ignore: unused_local_variable
                   var passwordVal = passwordController.text;
 
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text("Sending, please wait...")),
                   );
                   FocusScope.of(context).requestFocus(FocusNode());
-
-                  var prov = context.read<UserProvider>();
 
     
                 }

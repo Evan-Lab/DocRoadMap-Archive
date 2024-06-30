@@ -1,4 +1,5 @@
 
+import 'package:app/src/component/card/slidder_hz_cardA.dart';
 import 'package:app/src/component/reusable/search_bar.dart';
 import 'package:app/src/page/account/login_page.dart';
 import 'package:app/src/page/account/sign_up_page.dart';
@@ -115,6 +116,7 @@ class PageHomeMain extends StatelessWidget {
       body: ListView(
         children: const [
           SearchBarItem(),
+          SliderPaperHome(),
         ]
       ),
     );

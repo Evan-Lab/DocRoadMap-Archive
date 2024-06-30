@@ -2,8 +2,10 @@
 import 'package:flutter/material.dart';
 
 
+// ignore: use_key_in_widget_constructors
 class SignUpForm extends StatefulWidget {
   @override
+  // ignore: library_private_types_in_public_api
   _SignUpFormState createState() => _SignUpFormState();
 }
 
@@ -180,11 +182,17 @@ class _SignUpFormState extends State<SignUpForm> {
                     ),
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
+                        // ignore: unused_local_variable
                         var firstNameVal = firstNameController.text;
+                        // ignore: unused_local_variable
                         var lastNameVal = lastNameController.text;
+                        // ignore: unused_local_variable
                         var emailVal = emailController.text;
+                        // ignore: unused_local_variable
                         var passwordVal = passwordController.text;
+                        // ignore: unused_local_variable
                         var genderVal = genderGuid;
+                        // ignore: unused_local_variable
                         var countryCodeVal = countryCode;
 
                         ScaffoldMessenger.of(context).showSnackBar(

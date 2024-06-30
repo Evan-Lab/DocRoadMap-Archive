@@ -1,4 +1,5 @@
 
+import 'package:app/src/component/card/profile_card.dart';
 import 'package:app/src/tools/settings/settings_view.dart';
 import 'package:flutter/material.dart';
 
@@ -80,6 +81,12 @@ class PageAccount extends StatelessWidget {
          
         ],
       ),
+       body: ListView(
+        children: const [
+          ProfileCard(firstName: 'test', lastName: 'test', email: 'test.test@test.test')
+        ]
+      ),
     );
+    
   }
 }

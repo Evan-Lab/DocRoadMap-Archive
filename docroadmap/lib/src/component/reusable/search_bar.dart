@@ -22,7 +22,7 @@ class SearchBarItem extends StatelessWidget {
         decoration: InputDecoration(
           hintText: 'Search for more',
           hintStyle: greyNormalTextStyle,
-          prefixIcon: Icon(Icons.search),
+          prefixIcon: const Icon(Icons.search),
           border: InputBorder.none,
           contentPadding: EdgeInsets.only(
               top: fixPadding * 0.78, bottom: fixPadding * 0.78),
