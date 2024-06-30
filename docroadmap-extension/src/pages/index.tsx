@@ -1,87 +1,69 @@
 import type { NextPage } from "next";
+import { useState } from "react";
+import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
-  return (
-    <div className="min-h-screen flex flex-col items-center justify-center py-2">
-      <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
-        <h1 className="text-6xl font-bold mb-8">
-          Welcome to{" "}
-          <a
-            href="https://nextjs.org"
-            className="text-red-600 hover:underline text-lg"
-          >
-            Next.js!
-          </a>
-        </h1>
+  const [showLogin, setShowLogin] = useState(false);
+  const [showSignup, setShowSignup] = useState(false);
 
-        <p className="mt-3 text-2xl">
-          Get started by editing{" "}
-          <code className="bg-gray-200 rounded-md p-2">
-            src/pages/index.tsx
-          </code>
+  const handleLoginClick = () => {
+    setShowSignup(false);
+    setShowLogin(true);
+  };
+
+  const handleSignupClick = () => {
+    setShowLogin(false);
+    setShowSignup(true);
+  };
+
+  return (
+    <div className={styles.container}>
+      <main className={styles.main}>
+        <div className={styles.logo}></div>
+
+        <p className={styles.description}>
+          Simplifiez toutes vos démarches administratives avec Doc RoadMap.
+          Accédez facilement à des informations et des services pour naviguer
+          dans les complexités administratives françaises.
         </p>
 
-        <div className="mt-6 flex flex-wrap items-center justify-around w-full max-w-screen-lg">
-          <a
-            href="https://nextjs.org/docs"
-            className="p-6 mt-6 text-left border w-full md:w-5/12 lg:w-3/12 rounded-xl hover:text-blue-600 focus:text-blue-600 mx-4"
-          >
-            <h2 className="text-2xl font-bold">Documentation &rarr;</h2>
-            <p className="mt-4 text-xl">
-              Find in-depth information about Next.js features and API.
-            </p>
-          </a>
+        <div className={styles.buttons}>
+          <button onClick={handleLoginClick} className={styles.button}>
+            Connexion
+          </button>
 
-          <a
-            href="https://nextjs.org/learn"
-            className="p-6 mt-6 text-left border w-full md:w-5/12 lg:w-3/12 rounded-xl hover:text-blue-600 focus:text-blue-600 mx-4"
-          >
-            <h2 className="text-2xl font-bold">Learn &rarr;</h2>
-            <p className="mt-4 text-xl">
-              Learn about Next.js in an interactive course with quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className="p-6 mt-6 text-left border w-full md:w-5/12 lg:w-3/12 rounded-xl hover:text-blue-600 focus:text-blue-600 mx-4"
-          >
-            <h2 className="text-2xl font-bold">Examples &rarr;</h2>
-            <p className="mt-4 text-xl">
-              Discover and deploy boilerplate example Next.js projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="p-6 mt-6 text-left border w-full md:w-5/12 lg:w-3/12 rounded-xl hover:text-blue-600 focus:text-blue-600 mx-4"
-          >
-            <h2 className="text-2xl font-bold">Deploy &rarr;</h2>
-            <p className="mt-4 text-xl">
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+          <button onClick={handleSignupClick} className={styles.button}>
+            Inscription
+          </button>
         </div>
-      </main>
 
-      <footer className="flex items-center justify-center w-full h-24 border-t mt-8">
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center justify-center"
-        >
-          Powered by{" "}
-          <span className="h-4 ml-2">
-            <img
-              src="/next-assets/vercel.svg"
-              alt="Vercel Logo"
-              width={72}
-              height={16}
+        {showLogin && (
+          <div className={styles.form}>
+            <h2>Connexion</h2>
+            <input type="email" placeholder="Email" className={styles.input} />
+            <input
+              type="password"
+              placeholder="Mot de passe"
+              className={styles.input}
             />
-          </span>
-        </a>
-      </footer>
+            <button className={styles.submitButton}>Se connecter</button>
+          </div>
+        )}
+
+        {showSignup && (
+          <div className={styles.form}>
+            <h2>Inscription</h2>
+            <input type="text" placeholder="Nom" className={styles.input} />
+            <input type="email" placeholder="Email" className={styles.input} />
+            <input
+              type="password"
+              placeholder="Mot de passe"
+              className={styles.input}
+            />
+            <button className={styles.submitButton}>S&apos;inscrire</button>
+          </div>
+        )}
+      </main>
     </div>
   );
 };
