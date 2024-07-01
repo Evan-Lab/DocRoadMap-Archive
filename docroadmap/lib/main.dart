@@ -1,9 +1,7 @@
-
 import 'package:app/src/navigation/scaffcold_with_navigation_bar.dart';
 import 'package:app/src/navigation/scaffcold_with_navigation_rail.dart';
 import 'package:app/src/page/account/account_page.dart';
 import 'package:app/src/page/home/home_page.dart';
-import 'package:app/src/page/home/main_home_page.dart';
 import 'package:app/src/providers/user_provider.dart';
 import 'package:app/src/tools/settings/settings_controller.dart';
 import 'package:app/src/tools/settings/settings_service.dart';
@@ -17,7 +15,6 @@ import 'package:provider/provider.dart';
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _shellNavigatorTabAKey = GlobalKey<NavigatorState>(debugLabel: 'Home');
 final _shellNavigatorTabCKey = GlobalKey<NavigatorState>(debugLabel: 'Account');
-
 
 final goRouter = GoRouter(
   initialLocation: '/tab1',
@@ -39,21 +36,17 @@ final goRouter = GoRouter(
           navigatorKey: _shellNavigatorTabAKey,
           routes: [
             GoRoute(
-              path: '/tab1',
-              pageBuilder: (context, state) =>
-                  const NoTransitionPage(child: PageHomeMain()),
-              routes: [
-                GoRoute(
-                    path: 'home',
-                    builder: (context, state) => const PageHome()),
-                GoRoute(
-                    path: 'homemain',
-                    builder: (context, state) => const PageHomeMain()),
-              ]
-            ),
+                path: '/tab1',
+                pageBuilder: (context, state) =>
+                    const NoTransitionPage(child: PageHome()),
+                routes: [
+                  GoRoute(
+                      path: 'home',
+                      builder: (context, state) => const PageHome()),
+                ]),
           ],
         ),
-       StatefulShellBranch(
+        StatefulShellBranch(
           navigatorKey: _shellNavigatorTabCKey,
           routes: [
             GoRoute(
@@ -63,18 +56,15 @@ final goRouter = GoRouter(
                     //PageRootScreen(label: 'A_root', detailsPath: '/a/details'),
                     PageAccount(),
               ),
-           
             ),
           ],
         ),
-       
       ],
     ),
   ],
 );
 
 void main() {
-
   WidgetsFlutterBinding.ensureInitialized();
   final settingsService = SettingsService();
   final settingsController = SettingsController(settingsService);
@@ -118,14 +108,13 @@ class ScaffoldWithNestedNavigation extends StatelessWidget {
       initialLocation: index == navigationShell.currentIndex,
     );
   }
-  
+
   Widget build(BuildContext context) {
     return MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (context) => UserProvider()),
-         
         ],
-       child: LayoutBuilder(builder: (context, constraints) {
+        child: LayoutBuilder(builder: (context, constraints) {
           if (constraints.maxWidth < 450) {
             return ScaffoldWithNavigationBar(
               body: navigationShell,

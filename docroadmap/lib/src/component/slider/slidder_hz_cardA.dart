@@ -14,7 +14,10 @@ class SliderPaperHome extends StatefulWidget {
 
 class _SliderPaperHome extends State<SliderPaperHome> {
   final List<Paper> lstItems = [
-    Paper(title: 'Passport', description: 'Passport', imageUrl: 'assets/passport.jpg'),
+    Paper(
+        title: 'Passport',
+        description: 'Passport',
+        imageUrl: 'assets/passport.jpg'),
     Paper(title: 'Visa', description: 'Visa', imageUrl: 'assets/visa.jpg'),
     Paper(title: 'Taxes', description: 'Taxes', imageUrl: 'assets/taxes.jpg'),
   ];
@@ -25,7 +28,7 @@ class _SliderPaperHome extends State<SliderPaperHome> {
     const double compoWidth = 170.0;
     const double compoHeight = 350.0;
     const double compoMediaHeight = 120.0;
-    const double compoInfoHeight = 210.0;
+    const double compoInfoHeight = 220.0;
 
     double wh = MediaQuery.of(context).size.width;
     double hg = compoHeight;
@@ -43,8 +46,7 @@ class _SliderPaperHome extends State<SliderPaperHome> {
           padding: EdgeInsets.only(
               right: fixPadding * 1.0, left: fixPadding * 1.0, bottom: 10),
           child: GestureDetector(
-              onTap: () {
-              },
+              onTap: () {},
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
