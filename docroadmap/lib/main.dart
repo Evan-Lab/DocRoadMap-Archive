@@ -3,6 +3,7 @@ import 'package:app/src/navigation/scaffcold_with_navigation_bar.dart';
 import 'package:app/src/navigation/scaffcold_with_navigation_rail.dart';
 import 'package:app/src/page/account/account_page.dart';
 import 'package:app/src/page/home/home_page.dart';
+import 'package:app/src/page/home/main_home_page.dart';
 import 'package:app/src/providers/user_provider.dart';
 import 'package:app/src/tools/settings/settings_controller.dart';
 import 'package:app/src/tools/settings/settings_service.dart';
@@ -44,6 +45,9 @@ final goRouter = GoRouter(
               routes: [
                 GoRoute(
                     path: 'home',
+                    builder: (context, state) => const PageHome()),
+                GoRoute(
+                    path: 'homemain',
                     builder: (context, state) => const PageHomeMain()),
               ]
             ),

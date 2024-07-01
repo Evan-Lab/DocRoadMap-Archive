@@ -23,7 +23,6 @@ class CardHzA extends StatefulWidget {
 }
 
 class _CardHzAState extends State<CardHzA> {
-
   @override
   Widget build(BuildContext context) {
     return Container(

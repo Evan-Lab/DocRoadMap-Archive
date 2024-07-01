@@ -1,15 +1,13 @@
 
-import 'package:app/src/component/card/slidder_hz_cardA.dart';
+import 'package:app/src/component/slider/slidder_hz_cardA.dart';
 import 'package:app/src/component/reusable/search_bar.dart';
 import 'package:app/src/page/account/login_page.dart';
 import 'package:app/src/page/account/sign_up_page.dart';
 import 'package:app/src/tools/settings/settings_view.dart';
 import 'package:flutter/material.dart';
 
-class PageHomeMain extends StatelessWidget {
-  const PageHomeMain ({Key? key}) : super(key: key);
-
-
+class PageHome extends StatelessWidget {
+  const PageHome ({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
