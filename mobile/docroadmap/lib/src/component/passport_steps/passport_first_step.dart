@@ -1,4 +1,3 @@
-import 'package:app/src/component/passport_steps/passport_second_step.dart';
 import 'package:app/src/component/passport_steps/passport_timeline.dart';
 import 'package:flutter/material.dart';
 

@@ -6,22 +6,34 @@ import 'package:app/src/page/passport/passport_step_3_page.dart';
 import 'package:app/src/page/passport/passport_step_4_page.dart';
 
 class VerticalTimelinePassport extends StatelessWidget {
-  const VerticalTimelinePassport({super.key});
+  const VerticalTimelinePassport({Key? key}) : super(key: key);
 
   void _navigateToPreDemande(BuildContext context) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => const PassportFirstStepPage()));
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const PassportFirstStepPage()),
+    );
   }
 
   void _navigateToPriseDeRendezVous(BuildContext context) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => const PassportSecondStepPage()));
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const PassportSecondStepPage()),
+    );
   }
 
   void _navigateToRendezVous(BuildContext context) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => const PassportThirdStepPage()));
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const PassportThirdStepPage()),
+    );
   }
 
   void _navigateToRecupererDocument(BuildContext context) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => const PassportFourthStepPage()));
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const PassportFourthStepPage()),
+    );
   }
   
   @override
@@ -59,3 +71,4 @@ class VerticalTimelinePassport extends StatelessWidget {
     );
   }
 }
+

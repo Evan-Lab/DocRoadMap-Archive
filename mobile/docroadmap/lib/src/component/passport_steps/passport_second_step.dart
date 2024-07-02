@@ -1,5 +1,4 @@
 import 'package:app/src/component/passport_steps/passport_timeline.dart';
-import 'package:app/src/page/passport/passport_step_3_page.dart';
 import 'package:flutter/material.dart';
 
 class PassportSecondStep extends StatelessWidget {
