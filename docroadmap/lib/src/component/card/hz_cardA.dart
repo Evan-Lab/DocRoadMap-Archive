@@ -1,17 +1,17 @@
-import 'package:app/src/component/passport_steps/passport-timeline.dart';
-import 'package:flutter/material.dart';
+import 'package:app/src/component/passport_steps/passport_timeline.dart';
 import 'package:app/src/component/reusable/class.dart';
 import 'package:app/src/tools/constant.dart';
+import 'package:flutter/material.dart';
 
 class CardHzA extends StatefulWidget {
   const CardHzA({
-    Key? key,
+    super.key,
     required this.item,
     required this.index,
     required this.widthVal,
     required this.mediaHeightVal,
     required this.infoHeightVal,
-  }) : super(key: key);
+  });
 
   final Paper item;
   final int index;
@@ -37,24 +37,22 @@ class _CardHzAState extends State<CardHzA> {
             child: Stack(
               children: [
                 GestureDetector(
-                  onTap: () {
-                    
-                  },
+                  onTap: () {},
                   child: Container(
                     width: double.infinity,
                     height: widget.mediaHeightVal,
                     padding: EdgeInsets.all(fixPadding * 1.5),
                     alignment: Alignment.bottomLeft,
                     decoration: const BoxDecoration(
-                      image: const DecorationImage(
-                         image: AssetImage('assets/passport.jpg'),
+                      image: DecorationImage(
+                        image: AssetImage('assets/passport.jpg'),
                         fit: BoxFit.cover,
                       ),
                       borderRadius: BorderRadius.vertical(
                         top: Radius.circular(10.0),
                       ),
+                    ),
                   ),
-                ),
                 )
               ],
             ),
@@ -101,8 +99,7 @@ class _CardHzAState extends State<CardHzA> {
                 ),
                 const SizedBox(height: 15.0),
                 ElevatedButton(
-                  onPressed: () {
-                  },
+                  onPressed: () {},
                   style: ElevatedButton.styleFrom(
                     //primary: Colors.white,
                     //onPrimary: Colors.black,
@@ -110,18 +107,20 @@ class _CardHzAState extends State<CardHzA> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  child: Container(
+                  child: const SizedBox(
                     width: double.infinity,
-                    child: const Center(child: Text('Talk with assistant')),
+                    child: Center(child: Text('Talk with assistant')),
                   ),
                 ),
                 const SizedBox(height: 8.0),
                 ElevatedButton(
-                  onPressed: () {Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => VerticalTimelinePassport()),
-                );
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              const VerticalTimelinePassport()),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     //primary: Colors.white,
@@ -130,9 +129,9 @@ class _CardHzAState extends State<CardHzA> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  child: Container(
+                  child: const SizedBox(
                     width: double.infinity,
-                    child: const Center(child: Text('Continue')),
+                    child: Center(child: Text('Continue')),
                   ),
                 ),
               ],

@@ -35,4 +35,3 @@ class VerticalTimelinePassport extends StatelessWidget {
     );
   }
 }
-
