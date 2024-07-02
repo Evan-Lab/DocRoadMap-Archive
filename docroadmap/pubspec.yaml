@@ -12,6 +12,7 @@ dependencies:
   go_router: ^14.2.0
   http: ^1.2.1
   provider: ^6.1.2
+  timeline_tile: ^2.0.0
 
 dev_dependencies:
   flutter_test:

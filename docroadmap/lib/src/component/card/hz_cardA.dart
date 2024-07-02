@@ -1,3 +1,4 @@
+import 'package:app/src/component/passport_steps/passport-timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:app/src/component/reusable/class.dart';
 import 'package:app/src/tools/constant.dart';
@@ -116,7 +117,11 @@ class _CardHzAState extends State<CardHzA> {
                 ),
                 const SizedBox(height: 8.0),
                 ElevatedButton(
-                  onPressed: () {
+                  onPressed: () {Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => VerticalTimelinePassport()),
+                );
                   },
                   style: ElevatedButton.styleFrom(
                     //primary: Colors.white,
