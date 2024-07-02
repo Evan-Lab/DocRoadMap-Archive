@@ -1,4 +1,4 @@
-import 'package:app/src/component/card/etape_2.dart';
+import 'package:app/src/component/passport_steps/passport_second_step.dart';
 import 'package:app/src/component/reusable/search_bar.dart';
 import 'package:app/src/component/slider/slidder_hz_cardA.dart';
 import 'package:app/src/page/account/login_page.dart';
@@ -117,7 +117,7 @@ class PageHome extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const EtapeDeuxPage()),
+                      builder: (context) => const PassportSecondStep()),
                 );
               },
               child: const Text('Continue'),

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
-class EtapeDeuxPage extends StatelessWidget {
-  const EtapeDeuxPage({super.key});
+import 'passport_thrid_step.dart'; // Importez le composant de la troisième étape
+
+class PassportSecondStep extends StatelessWidget {
+  const PassportSecondStep({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -116,7 +118,14 @@ class EtapeDeuxPage extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const PassportThirdStepPage(),
+                  ),
+                );
+              },
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.black,
                 backgroundColor: Colors.yellow,
