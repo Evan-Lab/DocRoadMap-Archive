@@ -1,25 +1,25 @@
-
-import 'package:app/src/component/slider/slidder_hz_cardA.dart';
+import 'package:app/src/component/card/etape_2.dart';
 import 'package:app/src/component/reusable/search_bar.dart';
+import 'package:app/src/component/slider/slidder_hz_cardA.dart';
 import 'package:app/src/page/account/login_page.dart';
 import 'package:app/src/page/account/sign_up_page.dart';
 import 'package:app/src/tools/settings/settings_view.dart';
 import 'package:flutter/material.dart';
 
 class PageHome extends StatelessWidget {
-  const PageHome ({Key? key}) : super(key: key);
+  const PageHome({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0Xfffbfbfb),
+      backgroundColor: const Color(0Xfffbfbfb),
       appBar: AppBar(
         title: const Text('Home Page'),
         actions: [
           IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
-              
+              // Action pour le bouton de retour (non définie)
             },
           ),
           IconButton(
@@ -56,20 +56,19 @@ class PageHome extends StatelessWidget {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>
-                            const PageAccountLogin()), 
+                                  builder: (context) =>
+                                      const PageAccountLogin(),
+                                ),
                               );
-                            } ,
+                            },
                             style: ElevatedButton.styleFrom(
-                              //primary: Colors.white,
-                              //onPrimary: Colors.black,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
                               ),
                             ),
-                            child: Container(
+                            child: const SizedBox(
                               width: double.infinity,
-                              child: const Center(child: Text('Login')),
+                              child: Center(child: Text('Login')),
                             ),
                           ),
                           ElevatedButton(
@@ -77,20 +76,18 @@ class PageHome extends StatelessWidget {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>
-                            const PageSignUp()), 
+                                  builder: (context) => const PageSignUp(),
+                                ),
                               );
-                            } ,
+                            },
                             style: ElevatedButton.styleFrom(
-                              //primary: Colors.white,
-                              //onPrimary: Colors.black,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
                               ),
                             ),
-                            child: Container(
+                            child: const SizedBox(
                               width: double.infinity,
-                              child: const Center(child: Text('Sign Up')),
+                              child: Center(child: Text('Sign Up')),
                             ),
                           ),
                         ],
@@ -105,17 +102,28 @@ class PageHome extends StatelessWidget {
             icon: const Icon(Icons.settings),
             onPressed: () {
               Navigator.restorablePushNamed(context, SettingsView.routeName);
-
             },
-          ),      
-         
+          ),
         ],
       ),
       body: ListView(
-        children: const [
-          SearchBarItem(),
-          SliderPaperHome(),
-        ]
+        children: [
+          const SearchBarItem(),
+          const SliderPaperHome(),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const EtapeDeuxPage()),
+                );
+              },
+              child: const Text('Continue'),
+            ),
+          ),
+        ],
       ),
     );
   }
