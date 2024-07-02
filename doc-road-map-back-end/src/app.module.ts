@@ -4,6 +4,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { ProcedureModule } from './procedure/procedure.module';
+import { StepModule } from './step/step.module';
 
 @Module({
   imports: [
@@ -19,7 +21,9 @@ import { AuthModule } from './auth/auth.module';
       autoLoadEntities: true,
     }),
     UsersModule,
-    AuthModule
+    AuthModule,
+    ProcedureModule,
+    StepModule
   ],
   controllers: [AppController],
   providers: [AppService],
