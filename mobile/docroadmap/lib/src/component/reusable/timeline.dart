@@ -6,6 +6,7 @@ class CustomTimelineTile extends StatelessWidget {
   final String endText;
   final bool isFirst;
   final bool isLast;
+  final VoidCallback? onStartTap;
 
   const CustomTimelineTile({
     super.key,
@@ -13,6 +14,7 @@ class CustomTimelineTile extends StatelessWidget {
     required this.endText,
     this.isFirst = false,
     this.isLast = false,
+    this.onStartTap,
   });
 
   @override
@@ -39,20 +41,26 @@ class CustomTimelineTile extends StatelessWidget {
         color: Colors.black,
         thickness: 6,
       ),
-      startChild: Container(
-        constraints: const BoxConstraints(
-          minHeight: 120,
-        ),
-        child: Center(
-          child: Text(startText),
+      startChild: InkWell(
+        onTap: onStartTap,
+        child: Container(
+          constraints: const BoxConstraints(
+            minHeight: 120,
+          ),
+          child: Center(
+            child: Text(startText),
+          ),
         ),
       ),
-      endChild: Container(
-        constraints: const BoxConstraints(
-          minHeight: 120,
-        ),
-        child: Center(
-          child: Text(endText),
+      endChild: InkWell(
+        onTap: onStartTap != null ? () => onStartTap!() : null,
+        child: Container(
+          constraints: const BoxConstraints(
+            minHeight: 120,
+          ),
+          child: Center(
+            child: Text(endText),
+          ),
         ),
       ),
     );

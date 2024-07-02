@@ -24,8 +24,34 @@ class CardHzA extends StatefulWidget {
 }
 
 class _CardHzAState extends State<CardHzA> {
+  void _handleContinueButton() {
+    if (widget.item.title == 'Passport') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const VerticalTimelinePassport(),
+        ),
+      );
+    }
+  }
+
+  String _getAssetForTitle(String title) {
+    switch (title) {
+      case 'Passport':
+        return 'assets/passport.jpg';
+      case 'Visa':
+        return 'assets/visa.jpg';
+      case 'Taxes':
+        return 'assets/taxes.jpg';
+      default:
+        return 'assets/default.jpg';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    String assetImage = _getAssetForTitle(widget.item.title);
+
     return Container(
       width: widget.widthVal,
       margin: const EdgeInsets.only(top: 10.0, right: 15),
@@ -43,17 +69,17 @@ class _CardHzAState extends State<CardHzA> {
                     height: widget.mediaHeightVal,
                     padding: EdgeInsets.all(fixPadding * 1.5),
                     alignment: Alignment.bottomLeft,
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage('assets/passport.jpg'),
+                        image: AssetImage(assetImage),
                         fit: BoxFit.cover,
                       ),
-                      borderRadius: BorderRadius.vertical(
+                      borderRadius: const BorderRadius.vertical(
                         top: Radius.circular(10.0),
                       ),
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),
@@ -114,14 +140,7 @@ class _CardHzAState extends State<CardHzA> {
                 ),
                 const SizedBox(height: 8.0),
                 ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              const VerticalTimelinePassport()),
-                    );
-                  },
+                  onPressed: _handleContinueButton,
                   style: ElevatedButton.styleFrom(
                     //primary: Colors.white,
                     //onPrimary: Colors.black,
@@ -131,7 +150,7 @@ class _CardHzAState extends State<CardHzA> {
                   ),
                   child: const SizedBox(
                     width: double.infinity,
-                    child: Center(child: Text('Continue')),
+                    child: Center(child: Text('Your roadmap')),
                   ),
                 ),
               ],

@@ -2,7 +2,6 @@ import 'package:app/src/component/reusable/search_bar.dart';
 import 'package:app/src/component/slider/slidder_hz_cardA.dart';
 import 'package:app/src/page/account/login_page.dart';
 import 'package:app/src/page/account/sign_up_page.dart';
-import 'package:app/src/page/roadmap_step_1/roadmap_step_1_page.dart';
 import 'package:app/src/tools/settings/settings_view.dart';
 import 'package:flutter/material.dart';
 
@@ -107,22 +106,9 @@ class PageHome extends StatelessWidget {
         ],
       ),
       body: ListView(
-        children: [
-          const SearchBarItem(),
-          const SliderPaperHome(),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const PageRoadmap1()),
-                );
-              },
-              child: const Text('Continue'),
-            ),
-          ),
+        children: const [
+          SearchBarItem(),
+          SliderPaperHome(),
         ],
       ),
     );
