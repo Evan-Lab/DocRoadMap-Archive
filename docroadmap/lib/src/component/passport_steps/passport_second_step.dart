@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'passport_thrid_step.dart'; 
+import 'passport_thrid_step.dart';
 
 class PassportSecondStep extends StatelessWidget {
   const PassportSecondStep({super.key});

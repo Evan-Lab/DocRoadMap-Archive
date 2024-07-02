@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'passport_four_step.dart';
+
 class PassportThirdStepPage extends StatelessWidget {
   const PassportThirdStepPage({super.key});
 
@@ -126,7 +128,12 @@ class PassportThirdStepPage extends StatelessWidget {
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
-                // Action à effectuer lors de la validation de l'étape
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const PassportFourthStepPage(),
+                  ),
+                );
               },
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.black,
