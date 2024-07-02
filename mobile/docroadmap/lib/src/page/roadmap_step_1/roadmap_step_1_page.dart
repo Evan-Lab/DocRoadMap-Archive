@@ -1,13 +1,12 @@
-
 import 'package:app/src/component/passport_steps/passport_second_step.dart';
-import 'package:flutter/material.dart';
 import 'package:app/src/page/home/home_page.dart';
+import 'package:flutter/material.dart';
 
 class PageRoadmap1 extends StatelessWidget {
-  const PageRoadmap1 ({super.key});
+  const PageRoadmap1({super.key});
 
   @override
-   Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -22,16 +21,15 @@ class PageRoadmap1 extends StatelessWidget {
           onPressed: () {
             Navigator.pop(
               context,
-              MaterialPageRoute(builder: (context) => const PageHome()), 
+              MaterialPageRoute(builder: (context) => const PageHome()),
             );
-          } ,
+          },
         ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
-
             const Text(
               'Pré-demande de passeport',
               style: TextStyle(
@@ -39,74 +37,60 @@ class PageRoadmap1 extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-
             const SizedBox(height: 20),
-
             const Text(
               'Document à fournir',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                decoration: TextDecoration.underline,
               ),
             ),
-
             const SizedBox(height: 8),
-
             const Text(
               'Aucun document à fournir',
               style: TextStyle(
-                fontSize: 14,
-                color: Colors.grey,
-                fontStyle: FontStyle.italic
-              ),
+                  fontSize: 14,
+                  color: Colors.grey,
+                  fontStyle: FontStyle.italic),
             ),
-
             const SizedBox(height: 16),
-
             const Text(
               'Etapes à effectuer',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                decoration: TextDecoration.underline,
               ),
             ),
-
             const SizedBox(height: 8),
-
-            const Text( '1. Rendez-vous sur ce site et suivez les étapes pour acheter votre timbre fiscal électronique.',
+            const Text(
+              '1. Rendez-vous sur ce site et suivez les étapes pour acheter votre timbre fiscal électronique.',
               style: TextStyle(fontSize: 16),
             ),
-
             const SizedBox(height: 4),
-
             const Padding(
-              padding: const EdgeInsets.all(16.0),
-              child:InkWell(
-                  child: Text( 'https://timbres.impots.gouv.fr/',
-                    style: TextStyle(
-                        color: Colors.blue,
-                        fontSize: 14,
-                        decoration: TextDecoration.underline),
-                        //onTap: () => launch('https://passeport.ants.gouv.fr/services/geolocaliser-une-mairie-habilitee'),
-                  ),
+              padding: EdgeInsets.all(16.0),
+              child: InkWell(
+                child: Text(
+                  'https://timbres.impots.gouv.fr/',
+                  style: TextStyle(
+                      color: Colors.blue,
+                      fontSize: 14,
+                      decoration: TextDecoration.underline),
+                  //onTap: () => launch('https://passeport.ants.gouv.fr/services/geolocaliser-une-mairie-habilitee'),
                 ),
+              ),
             ),
             const SizedBox(height: 8),
-
-            const Text( '2. Rendez-vous sur ce site pour Préremplire votre demande.',
+            const Text(
+              '2. Rendez-vous sur ce site pour Préremplire votre demande.',
               style: TextStyle(fontSize: 16),
             ),
-
             const SizedBox(height: 8),
-
-            const Text( '3. Gardez votre numéro de demande !',
+            const Text(
+              '3. Gardez votre numéro de demande !',
               style: TextStyle(fontSize: 16),
             ),
-
             const SizedBox(height: 64),
-
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
@@ -129,7 +113,6 @@ class PageRoadmap1 extends StatelessWidget {
                 style: TextStyle(fontSize: 16),
               ),
             ),
-            
           ],
         ),
       ),
