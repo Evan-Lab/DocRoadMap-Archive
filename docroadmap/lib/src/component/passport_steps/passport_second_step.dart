@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'passport_thrid_step.dart'; // Importez le composant de la troisième étape
+import 'passport_thrid_step.dart'; 
 
 class PassportSecondStep extends StatelessWidget {
   const PassportSecondStep({super.key});
