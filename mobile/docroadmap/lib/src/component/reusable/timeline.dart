@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:timeline_tile/timeline_tile.dart';
-import 'package:app/src/page/passport/passport_step_1_page.dart';
-import 'package:app/src/page/passport/passport_step_2_page.dart';
-import 'package:app/src/page/passport/passport_step_3_page.dart';
-import 'package:app/src/page/passport/passport_step_4_page.dart';
 
 class CustomTimelineTile extends StatelessWidget {
   final String startText;

@@ -1,5 +1,6 @@
 import 'package:app/src/component/passport_steps/passport_timeline.dart';
 import 'package:app/src/component/reusable/class.dart';
+import 'package:app/src/page/chat/chatbot_page.dart';
 import 'package:app/src/tools/constant.dart';
 import 'package:flutter/material.dart';
 
@@ -30,6 +31,17 @@ class _CardHzAState extends State<CardHzA> {
         context,
         MaterialPageRoute(
           builder: (context) => const VerticalTimelinePassport(),
+        ),
+      );
+    }
+  }
+
+  void _handleChatBotButton() {
+    if (widget.item.title == 'Passport') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const PageChatbot(),
         ),
       );
     }
@@ -125,7 +137,7 @@ class _CardHzAState extends State<CardHzA> {
                 ),
                 const SizedBox(height: 15.0),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: _handleChatBotButton,
                   style: ElevatedButton.styleFrom(
                     //primary: Colors.white,
                     //onPrimary: Colors.black,
