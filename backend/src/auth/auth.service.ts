@@ -1,4 +1,4 @@
-import { ConflictException, Injectable, UnauthorizedException } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
 import { CreateUserDto } from '../users/dto/create-user.dto';
 import { JwtService } from '@nestjs/jwt';
@@ -16,7 +16,7 @@ export class AuthService {
   ): Promise<{ access_token: string }> {
     const user = await this.usersService.findOne(email);
     if (user?.password !== password) {
-      throw new UnauthorizedException("Invalid Email or Password");
+      throw new NotFoundException("Invalid Email or Password");
     }
     const payload = { sub: user.id, email: user.email };
     return {

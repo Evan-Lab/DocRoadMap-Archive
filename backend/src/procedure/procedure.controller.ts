@@ -2,38 +2,69 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { ProcedureService } from './procedure.service';
 import { CreateProcedureDto } from './dto/create-procedure.dto';
 import { UpdateProcedureDto } from './dto/update-procedure.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBadRequestResponse, ApiCreatedResponse, ApiNotFoundResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 
 @Controller('procedure')
 export class ProcedureController {
   constructor(private readonly procedureService: ProcedureService) {}
 
-  @ApiTags('Procedure')
   @Post('create')
+  @ApiTags('Procedure')
+  @ApiCreatedResponse({
+    description: 'Created Succesfully',
+    type: CreateProcedureDto,
+    isArray: false,
+  })
+  @ApiBadRequestResponse({ description: 'Bad Request' })
   create(@Body() createProcedureDto: CreateProcedureDto) {
     return this.procedureService.create(createProcedureDto);
   }
 
-  @ApiTags('Procedure')
   @Get('allProcedure')
+  @ApiTags('Procedure')
+  @ApiOkResponse({
+    type: CreateProcedureDto,
+    isArray: true,
+  })
   findAll() {
     return this.procedureService.findAll();
   }
 
-  @ApiTags('Procedure')
   @Get(':id')
+  @ApiTags('Procedure')
+  @ApiOkResponse({
+    type: CreateProcedureDto,
+    isArray: false,
+  })
+  @ApiNotFoundResponse({
+    description: 'Not Found',
+  })
   findOne(@Param('id') id: string) {
     return this.procedureService.findOne(+id);
   }
 
-  @ApiTags('Procedure')
   @Patch(':id')
+  @ApiTags('Procedure')
+  @ApiOkResponse({
+    type: CreateProcedureDto,
+    isArray: false,
+  })
+  @ApiNotFoundResponse({
+    description: 'Not Found',
+  })
+  @ApiBadRequestResponse({ description: 'Bad Request' })
   update(@Param('id') id: string, @Body() updateProcedureDto: UpdateProcedureDto) {
     return this.procedureService.update(+id, updateProcedureDto);
   }
 
-  @ApiTags('Procedure')
   @Delete('delete/:id')
+  @ApiTags('Procedure')
+  @ApiOkResponse({
+    description: 'Deleted Successfully',
+  })
+  @ApiNotFoundResponse({
+    description: 'Not Found',
+  })
   remove(@Param('id') id: string) {
     return this.procedureService.remove(+id);
   }
