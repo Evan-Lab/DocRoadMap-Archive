@@ -16,11 +16,12 @@ export class StepController {
     isArray: false,
   })
   @ApiBadRequestResponse({ description: 'Bad Request' })
+  @ApiNotFoundResponse({description: "Not Found Procedure"})
   create(@Body() createStepDto: CreateStepDto) {
     return this.stepService.create(createStepDto);
   }
 
-  @Get('allStep')
+  @Get('all')
   @ApiTags('Steps')
   @ApiOkResponse({
     type: CreateStepDto,
@@ -30,7 +31,7 @@ export class StepController {
     return this.stepService.findAll();
   }
 
-  @Get('oneStep/:id')
+  @Get(':id')
   @ApiTags('Steps')
   @ApiOkResponse({
     type: CreateStepDto,
@@ -43,7 +44,7 @@ export class StepController {
     return this.stepService.findOne(+id);
   }
 
-  @Patch(':id')
+  @Patch('update/:id')
   @ApiTags('Steps')
   @ApiOkResponse({
     type: CreateStepDto,
@@ -53,6 +54,7 @@ export class StepController {
     description: 'Not Found',
   })
   @ApiBadRequestResponse({ description: 'Bad Request' })
+  @ApiNotFoundResponse({description: "Not Found Procedure"})
   update(@Param('id') id: string, @Body() updateStepDto: UpdateStepDto) {
     return this.stepService.update(+id, updateStepDto);
   }

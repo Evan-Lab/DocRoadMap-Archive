@@ -9,7 +9,7 @@ export class Step {
     @Column('text')
     title: string
 
-    @Column('text')
+    @Column('text', {nullable: true})
     doc: string
 
     @Column('text')
@@ -18,8 +18,11 @@ export class Step {
     @Column({ default: false })
     isValidate: boolean
 
-    @Column({ type: 'date' })
-    date: Date
+    @Column({ type: 'date', nullable: true })
+    meetDate: Date
+
+    @Column({ type: 'date', nullable: true })
+    validateDate: Date
 
     @ManyToOne(() => Procedure, procedure => procedure.steps)
     procedure: Procedure;

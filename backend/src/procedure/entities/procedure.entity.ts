@@ -9,7 +9,7 @@ export class Procedure {
     @Column('text')
     title: string
 
-    @Column('text')
+    @Column('text', { nullable: true })
     description: string
 
     @OneToMany(() => Step, step => step.procedure)

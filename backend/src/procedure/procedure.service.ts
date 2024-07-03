@@ -1,4 +1,4 @@
-import { ConflictException, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { CreateProcedureDto } from './dto/create-procedure.dto';
 import { UpdateProcedureDto } from './dto/update-procedure.dto';
 import { Procedure } from './entities/procedure.entity';
@@ -31,7 +31,8 @@ export class ProcedureService {
       step.doc = stepDto.doc;
       step.stepToFollow = stepDto.stepToFollow;
       step.isValidate = stepDto.isValidate;
-      step.date = stepDto.date;
+      step.meetDate = stepDto.meetDate;
+      step.validateDate = stepDto.validateDate;
       step.procedure = savedProcedure;
       return step;
     });

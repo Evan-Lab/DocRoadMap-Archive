@@ -8,7 +8,7 @@ import { ApiBadRequestResponse, ApiCreatedResponse, ApiNotFoundResponse, ApiOkRe
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Post()
+  @Post('create')
   @ApiTags('User')
   @ApiCreatedResponse({
     description: 'Created Succesfully',
@@ -20,7 +20,7 @@ export class UsersController {
     return this.usersService.create(createUserDto);
   }
 
-  @Get()
+  @Get('all')
   @ApiTags('User')
   @ApiOkResponse({
     type: CreateUserDto,
@@ -43,7 +43,7 @@ export class UsersController {
     return this.usersService.findOne(email);
   }
 
-  @Patch(':id')
+  @Patch('update/:id')
   @ApiTags('User')
   @ApiOkResponse({
     type: CreateUserDto,
@@ -57,7 +57,7 @@ export class UsersController {
     return this.usersService.update(+id, updateUserDto);
   }
 
-  @Delete(':id')
+  @Delete('delete/:id')
   @ApiTags('User')
   @ApiOkResponse({
     description: 'Deleted Successfully',

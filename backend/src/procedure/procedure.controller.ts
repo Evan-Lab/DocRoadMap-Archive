@@ -16,11 +16,12 @@ export class ProcedureController {
     isArray: false,
   })
   @ApiBadRequestResponse({ description: 'Bad Request' })
+  @ApiNotFoundResponse({description: "Not Found Steps"})
   create(@Body() createProcedureDto: CreateProcedureDto) {
     return this.procedureService.create(createProcedureDto);
   }
 
-  @Get('allProcedure')
+  @Get('all')
   @ApiTags('Procedure')
   @ApiOkResponse({
     type: CreateProcedureDto,
@@ -43,7 +44,7 @@ export class ProcedureController {
     return this.procedureService.findOne(+id);
   }
 
-  @Patch(':id')
+  @Patch('update/:id')
   @ApiTags('Procedure')
   @ApiOkResponse({
     type: CreateProcedureDto,
@@ -53,6 +54,7 @@ export class ProcedureController {
     description: 'Not Found',
   })
   @ApiBadRequestResponse({ description: 'Bad Request' })
+  @ApiNotFoundResponse({description: "Not Found Steps"})
   update(@Param('id') id: string, @Body() updateProcedureDto: UpdateProcedureDto) {
     return this.procedureService.update(+id, updateProcedureDto);
   }
