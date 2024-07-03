@@ -1,12 +1,12 @@
-import 'package:app/src/component/card/hz_cardA.dart';
+import 'package:app/src/component/card/hz_card_A.dart';
 import 'package:app/src/component/reusable/class.dart';
 import 'package:app/src/tools/constant.dart';
 import 'package:flutter/material.dart';
 
 class SliderPaperHome extends StatefulWidget {
   const SliderPaperHome({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   _SliderPaperHome createState() => _SliderPaperHome();
@@ -15,12 +15,12 @@ class SliderPaperHome extends StatefulWidget {
 class _SliderPaperHome extends State<SliderPaperHome> {
   final List<Paper> lstItems = [
     Paper(
-        title: 'Passport',
-        description: 'Passport',
-        imageUrl: 'assets/passport.jpg'),
-    Paper(title: 'Visa', description: 'Visa', imageUrl: 'assets/visa.jpg'),
-    Paper(title: 'Taxes', description: 'Taxes', imageUrl: 'assets/taxes.jpg'),
+      title: 'Passport', description: 'Step 0/4',
+    ),
+    Paper(title: 'Visa', description: 'Step 7/?'),
+    Paper(title: 'Taxes', description: 'Step 3/?'),
   ];
+
   @override
   Widget build(BuildContext context) {
     String sliderTitle = 'Find your paperwork';
@@ -46,17 +46,18 @@ class _SliderPaperHome extends State<SliderPaperHome> {
           padding: EdgeInsets.only(
               right: fixPadding * 1.0, left: fixPadding * 1.0, bottom: 10),
           child: GestureDetector(
-              onTap: () {},
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Icon(Icons.arrow_circle_right,
-                      color: Color(0xff000000), size: 20.0),
-                  const SizedBox(width: 10.0),
-                  Text('See More', style: smallBoldGreyTextStyle),
-                ],
-              )),
+            onTap: () {},
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Icon(Icons.arrow_circle_right,
+                    color: Color(0xff000000), size: 20.0),
+                const SizedBox(width: 10.0),
+                Text('See More', style: smallBoldGreyTextStyle),
+              ],
+            ),
+          ),
         ),
         Padding(
           padding:
@@ -70,13 +71,14 @@ class _SliderPaperHome extends State<SliderPaperHome> {
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) {
                 return InkWell(
-                    child: CardHzA(
-                  item: lstItems[index],
-                  index: index,
-                  mediaHeightVal: compoMediaHeight,
-                  infoHeightVal: compoInfoHeight,
-                  widthVal: compoWidth,
-                ));
+                  child: CardHzA(
+                    item: lstItems[index],
+                    index: index,
+                    mediaHeightVal: compoMediaHeight,
+                    infoHeightVal: compoInfoHeight,
+                    widthVal: compoWidth,
+                  ),
+                );
               },
             ),
           ),
@@ -85,3 +87,4 @@ class _SliderPaperHome extends State<SliderPaperHome> {
     );
   }
 }
+
