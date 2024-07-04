@@ -6,9 +6,10 @@ import 'package:app/src/providers/user_provider.dart';
 import 'package:app/src/tools/settings/settings_controller.dart';
 import 'package:app/src/tools/settings/settings_service.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_web_plugins/url_strategy.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 // private navigators
@@ -64,7 +65,8 @@ final goRouter = GoRouter(
   ],
 );
 
-void main() {
+void main() async {
+  await dotenv.load(fileName: ".env");
   WidgetsFlutterBinding.ensureInitialized();
   final settingsService = SettingsService();
   final settingsController = SettingsController(settingsService);
@@ -109,6 +111,7 @@ class ScaffoldWithNestedNavigation extends StatelessWidget {
     );
   }
 
+  @override
   Widget build(BuildContext context) {
     return MultiProvider(
         providers: [
