@@ -1,22 +1,30 @@
 import 'package:flutter/material.dart';
 
-class Keyboard_Chat extends StatefulWidget {
-  Keyboard_Chat(
-      {Key? key})
-      : super(key: key);
+class KeyboardChat extends StatefulWidget {
+  final Function(String) onSend;
+
+  const KeyboardChat({super.key, required this.onSend});
 
   @override
-  State<Keyboard_Chat> createState() => _Keyboard_ChatState();
+  State<KeyboardChat> createState() => _KeyboardChatState();
 }
 
-class _Keyboard_ChatState extends State<Keyboard_Chat> {
+class _KeyboardChatState extends State<KeyboardChat> {
   final ScrollController scrollController = ScrollController();
 
   final TextEditingController textEditingController = TextEditingController();
-
+  
   final FocusNode focusNode = FocusNode();
 
   bool get isTextFieldEnable => textEditingController.text.isNotEmpty;
+
+  void handleSend() {
+    if (isTextFieldEnable) {
+      widget.onSend(textEditingController.text);
+      textEditingController.clear();
+      focusNode.requestFocus();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +60,7 @@ class _Keyboard_ChatState extends State<Keyboard_Chat> {
                   borderSide: BorderSide.none,
                 ),
               ),
+              onSubmitted: (_) => handleSend(),
             ),
             Positioned(
               bottom: 0,
@@ -60,7 +69,7 @@ class _Keyboard_ChatState extends State<Keyboard_Chat> {
                 icon: const Icon(
                   Icons.send,
                 ),
-                onPressed: () => {}
+                onPressed: handleSend,
               ),
             ),
           ],
