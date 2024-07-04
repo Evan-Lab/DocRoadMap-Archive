@@ -11,95 +11,113 @@ class ChatbotPage extends StatefulWidget {
 
 class _ChatbotPageState extends State<ChatbotPage> {
   final TextEditingController _controller = TextEditingController();
-  final List<String> _messages = [];
+  final List<Map<String, String>> _messages = [];
 
   Future<void> _sendMessage() async {
     final message = _controller.text;
     if (message.isNotEmpty) {
       setState(() {
-        _messages.add('You: $message');
+        _messages.add({'sender': 'user', 'message': message});
         _controller.clear();
       });
 
       try {
-        final response = await sendMessageToOpenAI(message);
-        setState(() {
-          _messages.add('Bot: $response');
+        String buffer = '';
+        await sendMessageToOpenAI(message, (data) {
+          buffer += data;
+          setState(() {
+            if (_messages.isNotEmpty && _messages.last['sender'] == 'bot') {
+              _messages[_messages.length - 1]['message'] = buffer;
+            } else {
+              _messages.add({'sender': 'bot', 'message': buffer});
+            }
+          });
         });
       } catch (e) {
         setState(() {
-          _messages.add('Bot: Error occurred');
+          _messages.add({'sender': 'bot', 'message': 'Error occurred'});
         });
       }
     }
   }
 
+  Widget _buildMessageBubble(String message, bool isUser) {
+    return Align(
+      alignment: isUser ? Alignment.centerRight : Alignment.centerLeft,
+      child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 14),
+        decoration: BoxDecoration(
+          color: isUser ? Colors.blue[100] : Colors.grey[300],
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: Text(
+          message,
+          style: const TextStyle(fontSize: 16),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 300,
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Donna'),
       ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const SizedBox(height: 16),
-          const Text(
-            'Donna',
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
+      body: Container(
+        decoration: const BoxDecoration(
+          color: Colors.white,
+        ),
+        child: Column(
+          children: [
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
+              child: Text(
+                'Bonjour je suis Donna! Comment puis je vous aider ?',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 18),
+              ),
             ),
-          ),
-          const SizedBox(height: 10),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.0),
-            child: Text(
-              'Bonjour je suis Donna! Comment puis je vous aider ?.',
-              textAlign: TextAlign.center,
+            Expanded(
+              child: ListView.builder(
+                itemCount: _messages.length,
+                itemBuilder: (context, index) {
+                  final message = _messages[index];
+                  final isUser = message['sender'] == 'user';
+                  return _buildMessageBubble(message['message']!, isUser);
+                },
+              ),
             ),
-          ),
-          const SizedBox(height: 20),
-          Expanded(
-            child: ListView.builder(
-              itemCount: _messages.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(_messages[index]),
-                );
-              },
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    controller: _controller,
-                    decoration: InputDecoration(
-                      hintText: 'Écrivez un message...',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 10,
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: _controller,
+                      decoration: InputDecoration(
+                        hintText: 'Écrivez un message...',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 10,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(width: 10),
-                IconButton(
-                  icon: const Icon(Icons.send),
-                  onPressed: _sendMessage,
-                ),
-              ],
+                  const SizedBox(width: 10),
+                  IconButton(
+                    icon: const Icon(Icons.send),
+                    onPressed: _sendMessage,
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
