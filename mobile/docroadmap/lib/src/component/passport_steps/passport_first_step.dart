@@ -1,4 +1,3 @@
-import 'package:app/src/component/passport_steps/passport_timeline.dart';
 import 'package:flutter/material.dart';
 
 class PassportFirstStep extends StatelessWidget {
@@ -32,9 +31,7 @@ class PassportFirstStep extends StatelessWidget {
         const Text(
           'Aucun document à fournir',
           style: TextStyle(
-              fontSize: 14,
-              color: Colors.grey,
-              fontStyle: FontStyle.italic),
+              fontSize: 14, color: Colors.grey, fontStyle: FontStyle.italic),
         ),
         const SizedBox(height: 16),
         const Text(

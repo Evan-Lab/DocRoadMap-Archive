@@ -16,7 +16,7 @@ class PageHome extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0Xfffbfbfb),
       appBar: AppBar(
-        title: const Text('Page d accueil'),
+        title: const Text("Page d'accueil"),
         actions: [
           IconButton(
             icon: const Icon(Icons.arrow_back),

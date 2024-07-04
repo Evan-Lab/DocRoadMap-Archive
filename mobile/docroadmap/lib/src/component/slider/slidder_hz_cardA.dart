@@ -1,25 +1,27 @@
+import 'dart:convert';
+
 import 'package:app/src/component/card/hz_card_A.dart';
 import 'package:app/src/component/reusable/class.dart';
+import 'package:app/src/models/step_passport.dart';
 import 'package:app/src/tools/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class SliderPaperHome extends StatefulWidget {
-  const SliderPaperHome({
-    super.key,
-  });
+  const SliderPaperHome({super.key});
 
   @override
   _SliderPaperHome createState() => _SliderPaperHome();
 }
 
 class _SliderPaperHome extends State<SliderPaperHome> {
-  final List<Paper> lstItems = [
-    Paper(
-      title: 'Passport', description: 'Etape 0/4',
-    ),
-    Paper(title: 'Visa', description: 'Etape 7/?'),
-    Paper(title: 'Taxes', description: 'Etape 3/?'),
-  ];
+  late Future<List<ProcedureInfo>> futureProcedureInfo;
+
+  @override
+  void initState() {
+    super.initState();
+    futureProcedureInfo = fetchProcedureInfo(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,20 +67,38 @@ class _SliderPaperHome extends State<SliderPaperHome> {
           child: SizedBox(
             width: wh,
             height: hg,
-            child: ListView.builder(
-              itemCount: lstItems.length,
-              scrollDirection: Axis.horizontal,
-              physics: const BouncingScrollPhysics(),
-              itemBuilder: (context, index) {
-                return InkWell(
-                  child: CardHzA(
-                    item: lstItems[index],
-                    index: index,
-                    mediaHeightVal: compoMediaHeight,
-                    infoHeightVal: compoInfoHeight,
-                    widthVal: compoWidth,
-                  ),
-                );
+            child: FutureBuilder<List<ProcedureInfo>>(
+              future: futureProcedureInfo,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (snapshot.hasError) {
+                  return Center(child: Text('Error: ${snapshot.error}'));
+                } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                  return const Center(child: Text('No data available'));
+                } else {
+                  var lstItems = snapshot.data!;
+                  return ListView.builder(
+                    itemCount: lstItems.length,
+                    scrollDirection: Axis.horizontal,
+                    physics: const BouncingScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      var procedure = lstItems[index];
+                      return InkWell(
+                        child: CardHzA(
+                          item: Paper(
+                            title: procedure.title,
+                            description: procedure.description,
+                          ),
+                          index: index,
+                          mediaHeightVal: compoMediaHeight,
+                          infoHeightVal: compoInfoHeight,
+                          widthVal: compoWidth,
+                        ),
+                      );
+                    },
+                  );
+                }
               },
             ),
           ),
@@ -88,3 +108,33 @@ class _SliderPaperHome extends State<SliderPaperHome> {
   }
 }
 
+Future<List<ProcedureInfo>> fetchProcedureInfo(BuildContext context) async {
+  var url = 'http://localhost:3000/procedure/all';
+
+  final uri = Uri.parse(url);
+  final response = await http.get(
+    uri,
+    headers: {
+      "Accept": "application/json",
+      "Content-Type": "application/json;charset=UTF-8"
+    },
+  );
+
+  if (response.statusCode == 200) {
+    try {
+      final body = response.body;
+      final List<dynamic> json = jsonDecode(body);
+
+      final List<ProcedureInfo> result = json.map((item) {
+        return ProcedureInfo.fromJson(item);
+      }).toList();
+
+      return result;
+    } catch (e) {
+      print('Error parsing JSON: $e');
+      throw Exception('Failed to parse procedures');
+    }
+  } else {
+    throw Exception('Failed to load procedures');
+  }
+}

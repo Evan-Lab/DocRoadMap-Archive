@@ -49,11 +49,11 @@ class _CardHzAState extends State<CardHzA> {
 
   String _getAssetForTitle(String title) {
     switch (title) {
-      case 'Passport':
+      case 'Passeport':
         return 'assets/passport.jpg';
       case 'Visa':
         return 'assets/visa.jpg';
-      case 'Taxes':
+      case 'Taxe':
         return 'assets/taxes.jpg';
       default:
         return 'assets/default.jpg';
@@ -147,7 +147,7 @@ class _CardHzAState extends State<CardHzA> {
                   ),
                   child: const SizedBox(
                     width: double.infinity,
-                    child: Center(child: Text('Parler avec l assistant')),
+                    child: Center(child: Text("Parler avec l'assistant")),
                   ),
                 ),
                 const SizedBox(height: 8.0),

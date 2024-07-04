@@ -1,10 +1,9 @@
-import 'package:app/src/component/passport_steps/passport_timeline.dart';
 import 'package:flutter/material.dart';
 
 class PassportSecondStep extends StatelessWidget {
-   final VoidCallback onValidated;
+  final VoidCallback onValidated;
   const PassportSecondStep({
-     super.key,
+    super.key,
     required this.onValidated,
   });
 
@@ -103,7 +102,7 @@ class PassportSecondStep extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         ElevatedButton(
-         onPressed: () {
+          onPressed: () {
             onValidated();
             Navigator.pop(context);
           },

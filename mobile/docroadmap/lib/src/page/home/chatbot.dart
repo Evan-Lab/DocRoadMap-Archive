@@ -74,7 +74,7 @@ class _ChatbotPageState extends State<ChatbotPage> {
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
               child: Text(
-                'Bonjour je suis Donna! Comment puis-je vous aider ?',
+                'Bonjour, je suis Donna, votre IA spécialisée en démarches administratives. En quoi puis-je vous aider ?',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 16),
               ),
