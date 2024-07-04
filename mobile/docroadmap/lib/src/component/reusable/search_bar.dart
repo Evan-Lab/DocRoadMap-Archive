@@ -20,7 +20,7 @@ class SearchBarItem extends StatelessWidget {
       ),
       child: TextField(
         decoration: InputDecoration(
-          hintText: 'Search for more',
+          hintText: 'Recherche',
           hintStyle: greyNormalTextStyle,
           prefixIcon: const Icon(Icons.search),
           border: InputBorder.none,

@@ -13,7 +13,7 @@ class PageAccount extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0Xfffbfbfb),
       appBar: AppBar(
-        title: const Text('Account'),
+        title: const Text('Ton compte'),
         actions: [
           IconButton(
             icon: const Icon(Icons.arrow_back),
@@ -43,7 +43,7 @@ class PageAccount extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           const Text(
-                            'Welcome!',
+                            'BIenvenue!',
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -61,7 +61,7 @@ class PageAccount extends StatelessWidget {
                             ),
                             child: Container(
                               width: double.infinity,
-                              child: const Center(child: Text('Sign Up')),
+                              child: const Center(child: Text('Connexion')),
                             ),
                           ),
                         ],

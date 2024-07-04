@@ -14,7 +14,7 @@ class _PageAccountLoginState extends State<PageAccountLogin> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Login page'),
+          title: const Text('Page de connexion'),
           actions: const [],
         ),
         backgroundColor: const Color(0Xfffbfbfb),
