@@ -15,15 +15,15 @@ class SliderPaperHome extends StatefulWidget {
 class _SliderPaperHome extends State<SliderPaperHome> {
   final List<Paper> lstItems = [
     Paper(
-      title: 'Passport', description: 'Step 0/4',
+      title: 'Passport', description: 'Etape 0/4',
     ),
-    Paper(title: 'Visa', description: 'Step 7/?'),
-    Paper(title: 'Taxes', description: 'Step 3/?'),
+    Paper(title: 'Visa', description: 'Etape 7/?'),
+    Paper(title: 'Taxes', description: 'Etape 3/?'),
   ];
 
   @override
   Widget build(BuildContext context) {
-    String sliderTitle = 'Find your paperwork';
+    String sliderTitle = 'Trouve ta démarche';
 
     const double compoWidth = 170.0;
     const double compoHeight = 350.0;
@@ -54,7 +54,7 @@ class _SliderPaperHome extends State<SliderPaperHome> {
                 const Icon(Icons.arrow_circle_right,
                     color: Color(0xff000000), size: 20.0),
                 const SizedBox(width: 10.0),
-                Text('See More', style: smallBoldGreyTextStyle),
+                Text('Voir plus', style: smallBoldGreyTextStyle),
               ],
             ),
           ),

@@ -6,7 +6,7 @@ import 'package:app/src/page/chat/chatbot_page.dart';
 import 'package:app/src/tools/settings/settings_view.dart';
 import 'package:flutter/material.dart';
 
-import 'chatbot.dart'; // Importez la nouvelle classe
+import 'chatbot.dart';
 
 class PageHome extends StatelessWidget {
   const PageHome({super.key});
@@ -16,7 +16,7 @@ class PageHome extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0Xfffbfbfb),
       appBar: AppBar(
-        title: const Text('Home Page'),
+        title: const Text('Page d accueil'),
         actions: [
           IconButton(
             icon: const Icon(Icons.arrow_back),
@@ -44,7 +44,7 @@ class PageHome extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           const Text(
-                            'Welcome!',
+                            'Bienvenue!',
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -122,7 +122,7 @@ class PageHome extends StatelessWidget {
                           builder: (context) => const PageChatbot()),
                     );
                   },
-                  child: const Text('Continue'),
+                  child: const Text('Crée ta roadmap'),
                 ),
               ),
             ],
@@ -139,7 +139,7 @@ class PageHome extends StatelessWidget {
                         BorderRadius.vertical(top: Radius.circular(20)),
                   ),
                   builder: (BuildContext context) {
-                    return const ChatbotPage(); // Utilisez la nouvelle classe ici
+                    return const ChatbotPage();
                   },
                 );
               },

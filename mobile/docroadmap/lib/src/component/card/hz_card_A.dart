@@ -147,7 +147,7 @@ class _CardHzAState extends State<CardHzA> {
                   ),
                   child: const SizedBox(
                     width: double.infinity,
-                    child: Center(child: Text('Talk with assistant')),
+                    child: Center(child: Text('Parler avec l assistant')),
                   ),
                 ),
                 const SizedBox(height: 8.0),
@@ -162,7 +162,7 @@ class _CardHzAState extends State<CardHzA> {
                   ),
                   child: const SizedBox(
                     width: double.infinity,
-                    child: Center(child: Text('Your roadmap')),
+                    child: Center(child: Text('Ta roadmap')),
                   ),
                 ),
               ],
