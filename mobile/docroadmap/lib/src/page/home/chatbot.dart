@@ -72,11 +72,11 @@ class _ChatbotPageState extends State<ChatbotPage> {
         child: Column(
           children: [
             const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
+              padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
               child: Text(
-                'Bonjour je suis Donna! Comment puis je vous aider ?',
+                'Bonjour je suis Donna! Comment puis-je vous aider ?',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 16),
               ),
             ),
             Expanded(
@@ -90,7 +90,8 @@ class _ChatbotPageState extends State<ChatbotPage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
               child: Row(
                 children: [
                   Expanded(
@@ -103,12 +104,12 @@ class _ChatbotPageState extends State<ChatbotPage> {
                         ),
                         contentPadding: const EdgeInsets.symmetric(
                           horizontal: 16,
-                          vertical: 10,
+                          vertical: 8,
                         ),
                       ),
                     ),
                   ),
-                  const SizedBox(width: 10),
+                  const SizedBox(width: 8),
                   IconButton(
                     icon: const Icon(Icons.send),
                     onPressed: _sendMessage,
