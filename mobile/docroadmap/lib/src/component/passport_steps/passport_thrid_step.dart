@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 
 
 class PassportThirdStep extends StatelessWidget {
+     final VoidCallback onValidated;
   const PassportThirdStep({
-    super.key,
+      super.key,
+    required this.onValidated,
   });
-
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -111,13 +112,9 @@ class PassportThirdStep extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         ElevatedButton(
-          onPressed: () {
-            Navigator.pop(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const VerticalTimelinePassport(),
-              ),
-            );
+           onPressed: () {
+            onValidated();
+            Navigator.pop(context);
           },
           style: ElevatedButton.styleFrom(
             foregroundColor: Colors.black,

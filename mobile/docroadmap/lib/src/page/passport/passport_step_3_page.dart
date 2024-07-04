@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 
 
 class PassportThirdStepPage extends StatelessWidget {
-  const PassportThirdStepPage({super.key});
+  final VoidCallback onValidated;
+
+  const PassportThirdStepPage({super.key, required this.onValidated});
+
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +26,9 @@ class PassportThirdStepPage extends StatelessWidget {
           },
         ),
       ),
-      body: const Padding(
+      body: Padding(
         padding: EdgeInsets.all(16.0),
-        child: PassportThirdStep(),
+        child: PassportThirdStep(onValidated: onValidated),
       ),
     );
   }

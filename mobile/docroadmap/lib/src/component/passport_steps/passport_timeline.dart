@@ -35,6 +35,9 @@ class _VerticalTimelinePassportState extends State<VerticalTimelinePassport> {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => PassportSecondStepPage(
+        onValidated: () {
+          _priseDeRendezVousKey.currentState?.updateColor(Colors.green);
+        },
       )),
     );
   }
@@ -43,6 +46,9 @@ class _VerticalTimelinePassportState extends State<VerticalTimelinePassport> {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => PassportThirdStepPage(
+        onValidated: () => {
+          _rendezVousKey.currentState?.updateColor(Colors.orange)
+        },
       )),
     );
   }
