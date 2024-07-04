@@ -16,11 +16,24 @@ class SliderPaperHome extends StatefulWidget {
 
 class _SliderPaperHome extends State<SliderPaperHome> {
   late Future<List<ProcedureInfo>> futureProcedureInfo;
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
-    futureProcedureInfo = fetchProcedureInfo(context);
+    futureProcedureInfo = fetchProcedureInfo();
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _reloadData() {
+    setState(() {
+      futureProcedureInfo = fetchProcedureInfo();
+    });
   }
 
   @override
@@ -42,7 +55,17 @@ class _SliderPaperHome extends State<SliderPaperHome> {
         Padding(
           padding: EdgeInsets.only(
               right: fixPadding * 1.0, left: fixPadding * 1.0, bottom: 10),
-          child: Text(sliderTitle, style: greyHeadingTextStyle),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(sliderTitle, style: greyHeadingTextStyle),
+              IconButton(
+                icon: const Icon(Icons.refresh,
+                    color: Color(0xff000000), size: 20.0),
+                onPressed: _reloadData,
+              ),
+            ],
+          ),
         ),
         Padding(
           padding: EdgeInsets.only(
@@ -79,6 +102,7 @@ class _SliderPaperHome extends State<SliderPaperHome> {
                 } else {
                   var lstItems = snapshot.data!;
                   return ListView.builder(
+                    controller: _scrollController,
                     itemCount: lstItems.length,
                     scrollDirection: Axis.horizontal,
                     physics: const BouncingScrollPhysics(),
@@ -108,7 +132,7 @@ class _SliderPaperHome extends State<SliderPaperHome> {
   }
 }
 
-Future<List<ProcedureInfo>> fetchProcedureInfo(BuildContext context) async {
+Future<List<ProcedureInfo>> fetchProcedureInfo() async {
   var url = 'http://localhost:3000/procedure/all';
 
   final uri = Uri.parse(url);
