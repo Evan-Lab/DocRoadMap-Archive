@@ -26,7 +26,7 @@ class CardHzA extends StatefulWidget {
 
 class _CardHzAState extends State<CardHzA> {
   void _handleContinueButton() {
-    if (widget.item.title == 'Passport') {
+    if (widget.item.title == 'Passeport') {
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -37,7 +37,7 @@ class _CardHzAState extends State<CardHzA> {
   }
 
   void _handleChatBotButton() {
-    if (widget.item.title == 'Passport') {
+    if (widget.item.title == 'Passeport') {
       Navigator.push(
         context,
         MaterialPageRoute(
