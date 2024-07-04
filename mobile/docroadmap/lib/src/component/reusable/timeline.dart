@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 
-class CustomTimelineTile extends StatelessWidget {
+class CustomTimelineTile extends StatefulWidget {
   final String startText;
   final String endText;
   final bool isFirst;
   final bool isLast;
   final VoidCallback? onStartTap;
+  final Color initialColor;
 
   const CustomTimelineTile({
     Key? key,
@@ -15,32 +16,52 @@ class CustomTimelineTile extends StatelessWidget {
     this.isFirst = false,
     this.isLast = false,
     this.onStartTap,
+    this.initialColor = Colors.black,
   }) : super(key: key);
+
+  @override
+  CustomTimelineTileState createState() => CustomTimelineTileState();
+}
+
+class CustomTimelineTileState extends State<CustomTimelineTile> {
+  late Color _color;
+
+  @override
+  void initState() {
+    super.initState();
+    _color = widget.initialColor;
+  }
+
+  void updateColor(Color color) {
+    setState(() {
+      _color = color;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onStartTap,
+      onTap: widget.onStartTap,
       child: TimelineTile(
         alignment: TimelineAlign.manual,
         lineXY: 0.5,
-        isFirst: isFirst,
-        isLast: isLast,
+        isFirst: widget.isFirst,
+        isLast: widget.isLast,
         indicatorStyle: IndicatorStyle(
           width: 40,
-          color: Colors.black,
+          color: _color,
           padding: const EdgeInsets.all(8),
           iconStyle: IconStyle(
             iconData: Icons.check,
             color: Colors.white,
           ),
         ),
-        beforeLineStyle: const LineStyle(
-          color: Colors.black,
+        beforeLineStyle: LineStyle(
+          color: _color,
           thickness: 6,
         ),
-        afterLineStyle: isLast ? null : const LineStyle(
-          color: Colors.black,
+        afterLineStyle: widget.isLast ? null : LineStyle(
+          color: _color,
           thickness: 6,
         ),
         startChild: Container(
@@ -48,7 +69,7 @@ class CustomTimelineTile extends StatelessWidget {
             minHeight: 120,
           ),
           child: Center(
-            child: Text(startText),
+            child: Text(widget.startText),
           ),
         ),
         endChild: Container(
@@ -56,7 +77,7 @@ class CustomTimelineTile extends StatelessWidget {
             minHeight: 120,
           ),
           child: Center(
-            child: Text(endText),
+            child: Text(widget.endText),
           ),
         ),
       ),

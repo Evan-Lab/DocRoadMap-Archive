@@ -2,8 +2,11 @@ import 'package:app/src/component/passport_steps/passport_timeline.dart';
 import 'package:flutter/material.dart';
 
 class PassportFirstStep extends StatelessWidget {
+  final VoidCallback onValidated;
+
   const PassportFirstStep({
     super.key,
+    required this.onValidated,
   });
 
   @override
@@ -73,12 +76,8 @@ class PassportFirstStep extends StatelessWidget {
         const SizedBox(height: 64),
         ElevatedButton(
           onPressed: () {
-            Navigator.pop(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const VerticalTimelinePassport(),
-              ),
-            );
+            onValidated();
+            Navigator.pop(context);
           },
           style: ElevatedButton.styleFrom(
             foregroundColor: Colors.black,

@@ -31,13 +31,13 @@ class _PageChatbotState extends State<PageChatbot> {
     setState(() {
       messages.add(SentMessage(message: message));
       if (message.toLowerCase().contains('valide')) {
-        messages.add(const ReceivedMessage(message: "C'est noté ! Ta roadmap est en cours de création ! Dirige toi sur ta rodamap dans la page d'accueil ! !"));
+        messages.add(const ReceivedMessage(message: "C'est noté ! Ta roadmap est en cours de création ! Dirige toi sur ta rodamap dans la page d'accueil !"));
       }
       if (message.toLowerCase().contains('périmée')) {
-        messages.add(const ReceivedMessage(message: "C'est noté ! Ta roadmap est en cours de création ! Dirige toi sur ta rodamap dans la page d'accueil ! !"));
+        messages.add(const ReceivedMessage(message: "C'est noté ! Ta roadmap est en cours de création ! Dirige toi sur ta rodamap dans la page d'accueil !"));
       }
       if (message.toLowerCase().contains('pas de carte')) {
-        messages.add(const ReceivedMessage(message: "C'est noté ! Ta roadmap est en cours de création ! Dirige toi sur ta rodamap dans la page d'accueil ! !"));
+        messages.add(const ReceivedMessage(message: "C'est noté ! Ta roadmap est en cours de création ! Dirige toi sur ta rodamap dans la page d'accueil !"));
       }
     });
   }
