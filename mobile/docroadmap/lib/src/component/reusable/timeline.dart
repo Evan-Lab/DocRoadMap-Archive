@@ -1,58 +1,84 @@
 import 'package:flutter/material.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 
-class CustomTimelineTile extends StatelessWidget {
+class CustomTimelineTile extends StatefulWidget {
   final String startText;
   final String endText;
   final bool isFirst;
   final bool isLast;
+  final VoidCallback? onStartTap;
+  final Color initialColor;
 
   const CustomTimelineTile({
-    super.key,
+    Key? key,
     required this.startText,
     required this.endText,
     this.isFirst = false,
     this.isLast = false,
-  });
+    this.onStartTap,
+    this.initialColor = Colors.black,
+  }) : super(key: key);
+
+  @override
+  CustomTimelineTileState createState() => CustomTimelineTileState();
+}
+
+class CustomTimelineTileState extends State<CustomTimelineTile> {
+  late Color _color;
+
+  @override
+  void initState() {
+    super.initState();
+    _color = widget.initialColor;
+  }
+
+  void updateColor(Color color) {
+    setState(() {
+      _color = color;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return TimelineTile(
-      alignment: TimelineAlign.manual,
-      lineXY: 0.5,
-      isFirst: isFirst,
-      isLast: isLast,
-      indicatorStyle: IndicatorStyle(
-        width: 40,
-        color: Colors.black,
-        padding: const EdgeInsets.all(8),
-        iconStyle: IconStyle(
-          iconData: Icons.check,
-          color: Colors.white,
+    return GestureDetector(
+      onTap: widget.onStartTap,
+      child: TimelineTile(
+        alignment: TimelineAlign.manual,
+        lineXY: 0.5,
+        isFirst: widget.isFirst,
+        isLast: widget.isLast,
+        indicatorStyle: IndicatorStyle(
+          width: 40,
+          color: _color,
+          padding: const EdgeInsets.all(8),
+          iconStyle: IconStyle(
+            iconData: Icons.check,
+            color: Colors.white,
+          ),
         ),
-      ),
-      beforeLineStyle: const LineStyle(
-        color: Colors.black,
-        thickness: 6,
-      ),
-      afterLineStyle: isLast ? null : const LineStyle(
-        color: Colors.black,
-        thickness: 6,
-      ),
-      startChild: Container(
-        constraints: const BoxConstraints(
-          minHeight: 120,
+        beforeLineStyle: LineStyle(
+          color: _color,
+          thickness: 6,
         ),
-        child: Center(
-          child: Text(startText),
+        afterLineStyle: widget.isLast ? null : LineStyle(
+          color: _color,
+          thickness: 6,
         ),
-      ),
-      endChild: Container(
-        constraints: const BoxConstraints(
-          minHeight: 120,
+        startChild: Container(
+          constraints: const BoxConstraints(
+            minHeight: 120,
+          ),
+          child: Center(
+            child: Text(widget.startText),
+          ),
         ),
-        child: Center(
-          child: Text(endText),
+        endChild: Container(
+          constraints: const BoxConstraints(
+            minHeight: 120,
+          ),
+          child: Center(
+            child: Text(widget.endText),
+          ),
         ),
       ),
     );

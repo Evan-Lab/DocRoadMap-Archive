@@ -2,9 +2,11 @@ import 'package:app/src/component/reusable/search_bar.dart';
 import 'package:app/src/component/slider/slidder_hz_cardA.dart';
 import 'package:app/src/page/account/login_page.dart';
 import 'package:app/src/page/account/sign_up_page.dart';
-import 'package:app/src/page/roadmap_step_1/roadmap_step_1_page.dart';
+import 'package:app/src/page/chat/chatbot_page.dart';
 import 'package:app/src/tools/settings/settings_view.dart';
 import 'package:flutter/material.dart';
+
+import 'chatbot.dart';
 
 class PageHome extends StatelessWidget {
   const PageHome({super.key});
@@ -14,13 +16,11 @@ class PageHome extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0Xfffbfbfb),
       appBar: AppBar(
-        title: const Text('Home Page'),
+        title: const Text("Page d'accueil"),
         actions: [
           IconButton(
             icon: const Icon(Icons.arrow_back),
-            onPressed: () {
-              // Action pour le bouton de retour (non définie)
-            },
+            onPressed: () {},
           ),
           IconButton(
             icon: const Icon(Icons.account_circle),
@@ -44,7 +44,7 @@ class PageHome extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           const Text(
-                            'Welcome!',
+                            'Bienvenue!',
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -106,21 +106,44 @@ class PageHome extends StatelessWidget {
           ),
         ],
       ),
-      body: ListView(
+      body: Stack(
         children: [
-          const SearchBarItem(),
-          const SliderPaperHome(),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: ElevatedButton(
+          ListView(
+            children: [
+              const SearchBarItem(),
+              const SliderPaperHome(),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const PageChatbot()),
+                    );
+                  },
+                  child: const Text('Crée ta roadmap'),
+                ),
+              ),
+            ],
+          ),
+          Positioned(
+            bottom: 20,
+            right: 20,
+            child: FloatingActionButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const PageRoadmap1()),
+                showModalBottomSheet(
+                  context: context,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius:
+                        BorderRadius.vertical(top: Radius.circular(20)),
+                  ),
+                  builder: (BuildContext context) {
+                    return const ChatbotPage();
+                  },
                 );
               },
-              child: const Text('Continue'),
+              child: const Icon(Icons.chat),
             ),
           ),
         ],
